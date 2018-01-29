@@ -18,8 +18,27 @@ body {
   margin: 0;
   color: #244751;
   background-color: #eee;
+  height: 100%;
 }
 
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+ html {
+  font-family: 'Roboto Condensed', sans-serif;
+  height: 100%;
+}
+
+
+main {
+  width: 450px;
+  margin: 140px 25% 0 25%;
+  background-color: white;
+  height: 100%;
+
+}
+
+
+
+

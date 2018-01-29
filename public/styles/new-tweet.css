@@ -1,0 +1,31 @@
+#line {
+  border-bottom: 1px solid black;
+  margin: 5px 5px 0 5px;
+
+}
+
+
+textarea[name=text] {
+  width: 95%;
+  margin: 15px auto 0 auto;
+  display: block;
+  padding: 3px 3px 3px 3px;
+}
+
+.new-tweet {
+background-color: #eee;
+margin: 20px 2em 0 2em;
+border-radius: 2%;
+width: 85%;
+float: left;
+}
+
+.counter {
+  float: right;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.submit {
+  margin: 5px 0 10px 10px;
+}
