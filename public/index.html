@@ -45,15 +45,24 @@
       <section class="new-tweet">
         <h2 id="line">Compose Tweet</h2>
         <form method="POST" action="/tweets">
-        <textarea name="text" placeholder="What are you humming about?"></textarea>
-        <div> </div>
-
-        <input class="submit" type="submit" value="Tweet">
-        <span class="counter">140</span>
-      </form>
-
+          <textarea name="text" placeholder="What are you humming about?"></textarea>
+          <div> </div>
+          <input class="submit" type="submit" value="Tweet">
+          <span class="counter">140</span>
+        </form>
       </section>
 
+        <section id="tweetContainer">
+          <article>
+            <header class="tweetHeader">
+              <img class="userPic" src="/images/user.png">
+              <span>Bill Fields</span>
+              <span class="atField">@MrFields</span>
+            </header>
+            <span class="tweetText" >Little tweet</span>
+            <footer class="foot"> 10 days ago </footer>
+          </article>
+        </section>
     </main>
 
   </body>

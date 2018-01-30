@@ -36,4 +36,45 @@ float: left;
 
 
 
+#tweetContainer {
+  border: 1px solid black;
+  margin: 20px 2em 0 2em;
+  border-radius: 2%;
+  width: 85%;
+  float: left;
+}
+
+.tweetHeader {
+  background-color: yellow;
+  border-radius: 2%;
+
+}
+
+.userPic {
+  height: 50px;
+  width: 50px;
+  border-radius: 8%;
+  margin: 8px 0 8px 8px;
+}
+
+.tweetText {
+  width: 95%;
+  margin: 15px auto 0 auto;
+  display: block;
+  padding: 3px 3px 3px 3px;
+}
+
+.foot {
+    border-top: 1px solid black;
+    margin: 5px 5px 5px 5px;
+
+}
+
+.atField {
+  float: right;
+  margin: 20px 10px 0 0;
+}
+
+
+
 
