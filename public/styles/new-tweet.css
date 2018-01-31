@@ -36,7 +36,7 @@ float: left;
 
 
 
-#tweetContainer {
+.tweetBox {
   border: 1px solid grey;
   margin: 20px 2em 0 2em;
   border-radius: 2%;
@@ -44,7 +44,7 @@ float: left;
   float: left;
 }
 
-#tweetContainer.hover {
+.tweetBox.hover {
   border: 5px solid black;
 }
 

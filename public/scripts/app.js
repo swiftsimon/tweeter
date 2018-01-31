@@ -6,18 +6,6 @@
 
 // console.log("app page");
 
-//  $(document).ready(function() {
-
-//   $( "#tweetContainer" ).hover(
-//     function() {
-//       $( this ).addClass('hover');
-
-//    } , function() {
-//       $( this ).removeClass('hover');
-//   }
-
-//  );
-// });
 
 
 const tweetData = [
@@ -74,7 +62,7 @@ const tweetData = [
  $(document).ready(function() {
     function createTweetElement (obj) {
       var tweetHTML = $(`
-          <article>
+          <article class="tweetBox">
           <header class="tweetHeader">
             <img class="userPic" src=${obj.user.avatars.small}>
                <span class="bigName">${obj.user.name}</span>
@@ -119,6 +107,18 @@ const tweetData = [
 });
 
 
+ $(document).ready(function() {
+
+  $( ".tweetBox" ).hover(
+    function() {
+      $( this ).addClass('hover');
+
+   } , function() {
+      $( this ).removeClass('hover');
+  }
+
+ );
+});
 
 
 
