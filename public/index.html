@@ -4,6 +4,9 @@
     <!-- Meta Information -->
     <title>Tweeter - Home Page</title>
 
+    <!-- Font Awesome Icons -->
+    <script src="https://use.fontawesome.com/ab79893f13.js"></script>
+
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
 
@@ -45,9 +48,9 @@
       <section class="new-tweet">
         <h2 id="line">Compose Tweet</h2>
         <form method="POST" action="/tweets">
-          <textarea name="text" placeholder="What are you humming about?"></textarea>
+          <textarea id="textMe" name="text" placeholder="What are you humming about?"></textarea>
           <div> </div>
-          <input class="submit" type="submit" value="Tweet">
+          <input id="submitMe" class="submit" type="submit" value="Tweet">
           <span class="counter">140</span>
         </form>
       </section>
@@ -56,10 +59,10 @@
           <article class="tweetBox">
             <header class="tweetHeader">
               <img class="userPic" src="/images/user.png">
-              <span class="bigName"></span>
-              <span class="atField"></span>
+              <span class="bigName">BILL</span>
+              <span class="atField">@bill</span>
             </header>
-            <span class="tweetText" ></span>
+            <span class="tweetText" >tweet</span>
             <footer class="foot"></footer>
           </article>
         </section>

@@ -34,7 +34,9 @@ float: left;
   color: red;
 }
 
+.tweetContainer {
 
+}
 
 .tweetBox {
   border: 1px solid grey;
@@ -45,7 +47,7 @@ float: left;
 }
 
 .tweetBox.hover {
-  border: 5px solid black;
+  border: 3px solid black;
 }
 
 
