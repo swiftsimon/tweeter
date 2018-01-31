@@ -46,7 +46,7 @@ float: left;
   float: left;
 }
 
-.tweetBox.hover {
+.tweetBox:hover {
   border: 3px solid black;
 }
 

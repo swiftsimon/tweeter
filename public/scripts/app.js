@@ -57,18 +57,27 @@
 
 
 
- $(document).ready(function() {
+$(document).ready(function() {
 
-    function createTweetElement (obj) {
+//use the escape(str) function to clean the data going back out to the DOM
+//in this case escape is called on obj.content.text around line 79
+  function escape(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  }
+
+
+  function createTweetElement (obj) {
       var tweetHTML = $(`
           <article class="tweetBox">
-          <header class="tweetHeader">
-            <img class="userPic" src=${obj.user.avatars.small}>
+            <header class="tweetHeader">
+              <img class="userPic" src=${obj.user.avatars.small}>
                <span class="bigName">${obj.user.name}</span>
                <span class="atField">${obj.user.handle}</span>
              </header>
-             <span class="tweetText" >${obj.content.text}</span>
-             <footer class="foot"> ${obj.created_at} </footer>
+             <span class="tweetText" >${escape(obj.content.text)}</span>
+             <footer class="foot"> ${obj.created_at} days ago</footer>
            </article>
 
           `)
@@ -77,16 +86,16 @@
       // the JSON file seeds the tweets in MongoDB
 
       return tweetHTML
-    }
+  }
 
-     function renderTweets(tweets) {
+  function renderTweets(tweets) {
 
        // loops through tweets
       for(let tweet of tweets) {
         let $tweet = createTweetElement(tweet);
         $('#tweetContainer').prepend($tweet);
       }
-   }
+  }
 
       // another way to loop
     // tweets.foreach(function (tweet) {
@@ -105,43 +114,42 @@
      //upon submitting form prevent browser default of loading a new page
      // this is where we want to prevent the bahaviour on id="submitMe"
 
-     $( "#submitMe" ).on('click', function() {
+  $( "#submitMe" ).on('click', function() {
       event.preventDefault()
 
      });
 
 // new function, responsible for fetching tweets from the http://localhost:8080/tweets page.
 //It will use jQuery to make a request to /tweets and receive the array of tweets as JSON.
-     function loadTweets() {
+  function loadTweets() {
       $.ajax({
         url: 'http://localhost:8080/tweets',
         method: 'GET',
         success: function (tweets) {
           console.log("got new tweets", tweets);
             renderTweets(tweets);
-        }
-      })
+      }
+    })
+  };  // end loadTweets
 
-     };  // end loadTweets
-
-     loadTweets();  //call loadTweets
+  loadTweets();  //call loadTweets
 
 
      //on the form submit handler <input class="submit" type="submit" value="Tweet">
      // <textarea name="text" placeholder="What are you humming about?"></textarea>
 
-     $("#submitMe").on('click', function(text) {
-        event.preventDefault()
-        const theTweet =  $( '#textMe' ).val();
+  $("#submitMe").on('click', function(text) {
+      event.preventDefault()
+      const theTweet =  $( '#textMe' ).val();
        // console.log("new tweet", renderTweets(theTweet);
         //console.log("tweet", theTweet)
         //console.log("length", theTweet.length)
-        if (theTweet === ""  ) {
-          console.log("empty")
-          alert("tweet empty")
+      if (theTweet === ""  ) {
+        console.log("empty")
+        alert("tweet empty")
           // send error
           // prevent default
-          event.preventDefault()
+        event.preventDefault()
         } else if (theTweet.length > 140) {
             // send error
             alert("tweet exceeds 140 char maximum")
@@ -163,15 +171,26 @@
                 loadTweets();
               }
             })
-              // $('#textMe').reset()
+               $('#textMe').innerHTML('')
             // *****************************clear tweet form
-           }
-
-          //submit the tweet
-          //renderTweets(theTweet);
+    }
   })
 
-}); // close function   close .on
+ //COMPOSE BUTTON
+   //   <button id="navBtn" class="compose" type="button">Compose</button>
+   // when navBtn is pressed, toggle up/down the .new-tweet box
+   // when toggle back, auto focus cursor on #textMe container
+$( "#navBtn" ).on('click', function() {
+      //toggle       <section class="new-tweet">
+      $('.new-tweet').toggle();
+      $('#textMe').focus();
+
+     });
+
+
+
+
+});  // end of doc.ready
 
        //.val() returns undefined if empty
           //check if form is empty, "" or null
@@ -187,23 +206,23 @@
 
 
 
- $(document).ready(function() {
+//  $(document).ready(function() {
 
-  $( ".tweetBox" ).hover(
-    function() {
-      $( this ).addClass('hover');
-      //$( this ).find('foot').append($("<i class="fa fa-flag-o" aria-hidden="true"></i>"));
+//   $( ".tweetBox" ).hover(
+//     function() {
+//       $( this ).addClass('hover');
+//       //$( this ).find('foot').append($("<i class="fa fa-flag-o" aria-hidden="true"></i>"));
 
-      //<i class="fa fa-flag-o" aria-hidden="true"></i>
-      //<i class="fa fa-heart" aria-hidden="true"></i>
+//       //<i class="fa fa-flag-o" aria-hidden="true"></i>
+//       //<i class="fa fa-heart" aria-hidden="true"></i>
 
-   } , function() {
-      $( this ).removeClass('hover');
-  }
+//    } , function() {
+//       $( this ).removeClass('hover');
+//   }
 
- );
+//  );
 
-});
+// });
 
 
 
