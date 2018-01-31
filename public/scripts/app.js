@@ -84,7 +84,7 @@
        // loops through tweets
       for(let tweet of tweets) {
         let $tweet = createTweetElement(tweet);
-        $('#tweetContainer').append($tweet);
+        $('#tweetContainer').prepend($tweet);
       }
    }
 
@@ -104,8 +104,10 @@
 
      //upon submitting form prevent browser default of loading a new page
      // this is where we want to prevent the bahaviour on id="submitMe"
+
      $( "#submitMe" ).on('click', function() {
       event.preventDefault()
+
      });
 
 // new function, responsible for fetching tweets from the http://localhost:8080/tweets page.
@@ -124,13 +126,16 @@
 
      loadTweets();  //call loadTweets
 
+
      //on the form submit handler <input class="submit" type="submit" value="Tweet">
      // <textarea name="text" placeholder="What are you humming about?"></textarea>
 
-     $(".submit").on('click', function(text) {
-       const theTweet =  $( '#textMe' ).val();
-        console.log("tweet", theTweet)
-        console.log("length", theTweet.length)
+     $("#submitMe").on('click', function(text) {
+        event.preventDefault()
+        const theTweet =  $( '#textMe' ).val();
+       // console.log("new tweet", renderTweets(theTweet);
+        //console.log("tweet", theTweet)
+        //console.log("length", theTweet.length)
         if (theTweet === ""  ) {
           console.log("empty")
           alert("tweet empty")
@@ -143,12 +148,34 @@
             console.log("too long")
             //prevent default
             event.preventDefault()
-        }
+        } else {
+          // post to /tweets using ajax
+            $.ajax({
+              url: 'http://localhost:8080/tweets',
+              method: 'POST',
+              // submit the data of the tweet
+              // in tweets.js you can see it expects this data as an object with a key of .text line 21
+              data: {
+                 text: theTweet,
+                  },
+              success: function (body) {
+                console.log("got BRAND new tweets");
+                loadTweets();
+              }
+            })
+              // $('#textMe').reset()
+            // *****************************clear tweet form
+           }
+
+          //submit the tweet
+          //renderTweets(theTweet);
+  })
+
+}); // close function   close .on
 
        //.val() returns undefined if empty
           //check if form is empty, "" or null
 
-    })
 
      //disallow form submission if the tweet area is empty or exceeds 140 char
      // data is not empty "" or null
@@ -158,8 +185,6 @@
         // do not submit form
 
 
-
-});
 
 
  $(document).ready(function() {
