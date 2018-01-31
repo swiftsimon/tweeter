@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-  $(".new-tweet > textarea").keyup(function() {    // target textarea tag from index.html
+  $(".new-tweet textarea").keyup(function() {    // target textarea tag from index.html
     var charLeft = (140 - $(this).val().length)  // this refers to "textarea"
       // console.log($(this).find(".counter"))
     var targetCounter = $(this).closest(".new-tweet").find(".counter")
