@@ -183,7 +183,7 @@ $(document).ready(function() {
                 loadTweets();
               }
             })
-               $('#textMe').innerHTML('')
+               //$('#textMe').innerHTML('')
             // **************************** *need clear tweet form
     }
   })
@@ -198,6 +198,19 @@ $( "#navBtn" ).on('click', function() {
       $('#textMe').focus();
 
      });
+
+  function loadTweets() {
+      $.ajax({
+        url: 'http://localhost:8080/tweets',
+        method: 'GET',
+        success: function (tweets) {
+          console.log("got new tweets", tweets);
+            renderTweets(tweets);
+      }
+    })
+  };  // end loadTweets
+
+  loadTweets();  //call loadTweets
 
 
 
