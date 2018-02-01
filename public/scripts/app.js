@@ -4,63 +4,11 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-// console.log("app page");
-
-// const tweetData = [
-//   {
-//     "user": {
-//       "name": "Newton",
-//       "avatars": {
-//         "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-//         "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-//         "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-//       },
-//       "handle": "@SirIsaac"
-//     },
-//     "content": {
-//       "text": "If I have seen further it is by standing on the shoulders of giants"
-//     },
-//     "created_at": 1461116232227
-//   },
-//   {
-//     "user": {
-//       "name": "Descartes",
-//       "avatars": {
-//         "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-//         "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-//         "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-//       },
-//       "handle": "@rd" },
-//     "content": {
-//       "text": "Je pense , donc je suis"
-//     },
-//     "created_at": 1461113959088
-//   },
-//   {
-//     "user": {
-//       "name": "Johann von Goethe",
-//       "avatars": {
-//         "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-//         "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-//         "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-//       },
-//       "handle": "@johann49"
-//     },
-//     "content": {
-//       "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-//     },
-//     "created_at": 1461113796368
-//   }
-// ];
-
-// console.log("XX", tweetData.user.avatars.small);
-
-
 
 $(document).ready(function() {
 
 //use the escape(str) function to clean the data going back out to the DOM
-//in this case escape is called on obj.content.text around line 79
+//in this case escape is called on obj.content.text around line 32
   function escape(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
@@ -70,31 +18,25 @@ $(document).ready(function() {
 
   function createTweetElement (obj) {
 
-      let today = Date.now()
-      console.log("today", today)
-      let created = obj.created_at;
-      console.log("created", created);
-      let minutes = Math.round(((today - created) / 60000) - 3);
-      console.log("minutes", minutes);
+    let today = Date.now()
+    let created = obj.created_at;
+    let minutes = Math.round(((today - created) / 60000) - 3);
 
-      var tweetHTML = $(`
-          <article class="tweetBox">
-            <header class="tweetHeader">
-              <img class="userPic" src=${obj.user.avatars.small}>
-               <span class="bigName">${obj.user.name}</span>
-               <span class="atField">${obj.user.handle}</span>
-             </header>
-             <span class="tweetText" >${escape(obj.content.text)}</span>
-
-             <footer class="foot"> ${minutes} minutes ago
-                <i class="fa fa-retweet" aria-hidden="true"></i>
-                <i class="fa fa-heart" aria-hidden="true"></i>
-                <i class="fa fa-flag-o" aria-hidden="true"></i>
-
-             </footer>
-           </article>
-
-          `)
+    var tweetHTML = $(`
+      <article class="tweetBox">
+        <header class="tweetHeader">
+          <img class="userPic" src=${obj.user.avatars.small}>
+            <span class="bigName">${obj.user.name}</span>
+           <span class="atField">${obj.user.handle}</span>
+        </header>
+        <span class="tweetText" >${escape(obj.content.text)}</span>
+        <footer class="foot"> ${minutes} minutes ago
+          <i class="fa fa-retweet" aria-hidden="true"></i>
+          <i class="fa fa-heart" aria-hidden="true"></i>
+          <i class="fa fa-flag-o" aria-hidden="true"></i>
+        </footer>
+      </article>
+      `)
 
       //this object comes from tweets JSON file
       // the JSON file seeds the tweets in MongoDB
@@ -148,10 +90,7 @@ $(document).ready(function() {
 
   loadTweets();  //call loadTweets
 
-
-     //on the form submit handler <input class="submit" type="submit" value="Tweet">
-     // <textarea name="text" placeholder="What are you humming about?"></textarea>
-
+// ON CLICK TWEET
   $("#submitMe").on('click', function(text) {
       event.preventDefault()
       const theTweet =  $( '#textMe' ).val();
@@ -159,17 +98,17 @@ $(document).ready(function() {
         //console.log("tweet", theTweet)
         //console.log("length", theTweet.length)
       if (theTweet === ""  ) {
-        console.log("empty")
-        alert("tweet empty")
+        //console.log("empty")
+        alert("OMG. UR tweet b empty");
           // send error
           // prevent default
-        event.preventDefault()
+        event.preventDefault();
         } else if (theTweet.length > 140) {
             // send error
-            alert("tweet exceeds 140 char maximum")
-            console.log("too long")
+            alert("Darn. Your tweet exceeds 140 character maximum");
+            //console.log("too long")
             //prevent default
-            event.preventDefault()
+            event.preventDefault();
         } else {
           // post to /tweets using ajax
             $.ajax({
@@ -181,7 +120,7 @@ $(document).ready(function() {
                  text: theTweet,
                   },
               success: function (body) {
-                console.log("got BRAND new tweets");
+                //console.log("got BRAND new tweets");
                 loadTweets();
               }
             })
@@ -206,7 +145,7 @@ $( "#navBtn" ).on('click', function() {
         url: 'http://localhost:8080/tweets',
         method: 'GET',
         success: function (tweets) {
-          console.log("got new tweets", tweets);
+          //console.log("got new tweets", tweets);
             renderTweets(tweets);
       }
     })
