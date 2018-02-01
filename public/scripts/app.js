@@ -92,23 +92,23 @@ $(document).ready(function() {
 
 // ON CLICK TWEET
   $("#submitMe").on('click', function(text) {
-      event.preventDefault()
-      const theTweet =  $( '#textMe' ).val();
+    event.preventDefault()
+    const theTweet =  $( '#textMe' ).val();
        // console.log("new tweet", renderTweets(theTweet);
         //console.log("tweet", theTweet)
         //console.log("length", theTweet.length)
-      if (theTweet === ""  ) {
+    if (theTweet === ""  ) {
         //console.log("empty")
-        alert("OMG. UR tweet b empty");
+      alert("OMG. UR tweet b empty");
           // send error
           // prevent default
-        event.preventDefault();
-        } else if (theTweet.length > 140) {
+      event.preventDefault();
+      } else if (theTweet.length > 140) {
             // send error
-            alert("Darn. Your tweet exceeds 140 character maximum");
+          alert("Darn. Your tweet exceeds 140 character maximum");
             //console.log("too long")
             //prevent default
-            event.preventDefault();
+          event.preventDefault();
         } else {
           // post to /tweets using ajax
             $.ajax({
@@ -125,20 +125,20 @@ $(document).ready(function() {
               }
             })
              // clear tweet form
-              $('#textMe').val('');
-    }
+            $('#textMe').val('');
+      }
   })
 
  //COMPOSE BUTTON
    //   <button id="navBtn" class="compose" type="button">Compose</button>
    // when navBtn is pressed, toggle up/down the .new-tweet box
    // when toggle back, auto focus cursor on #textMe container
-$( "#navBtn" ).on('click', function() {
+  $( "#navBtn" ).on('click', function() {
       //toggle       <section class="new-tweet">
-      $('.new-tweet').toggle();
-      $('#textMe').focus();
+    $('.new-tweet').toggle();
+    $('#textMe').focus();
 
-     });
+  });
 
   function loadTweets() {
       $.ajax({
@@ -146,7 +146,7 @@ $( "#navBtn" ).on('click', function() {
         method: 'GET',
         success: function (tweets) {
           //console.log("got new tweets", tweets);
-            renderTweets(tweets);
+          renderTweets(tweets);
       }
     })
   };  // end loadTweets
