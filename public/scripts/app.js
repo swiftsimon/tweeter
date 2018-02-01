@@ -69,6 +69,12 @@ $(document).ready(function() {
 
 
   function createTweetElement (obj) {
+    // ********** *need to set days ago calculation
+    // getTime() function returns milliseconds
+    // 1 day is 86400000 milliseconds
+    // let today = getTime()
+    // var normalDate = today - ${obj.created_at}
+
       var tweetHTML = $(`
           <article class="tweetBox">
             <header class="tweetHeader">
@@ -77,7 +83,13 @@ $(document).ready(function() {
                <span class="atField">${obj.user.handle}</span>
              </header>
              <span class="tweetText" >${escape(obj.content.text)}</span>
-             <footer class="foot"> ${obj.created_at} days ago</footer>
+
+             <footer class="foot"> ${obj.created_at} days ago
+                <i class="fa fa-retweet" aria-hidden="true"></i>
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                <i class="fa fa-flag-o" aria-hidden="true"></i>
+
+             </footer>
            </article>
 
           `)
@@ -172,7 +184,7 @@ $(document).ready(function() {
               }
             })
                $('#textMe').innerHTML('')
-            // *****************************clear tweet form
+            // **************************** *need clear tweet form
     }
   })
 
@@ -189,40 +201,10 @@ $( "#navBtn" ).on('click', function() {
 
 
 
-
 });  // end of doc.ready
 
-       //.val() returns undefined if empty
-          //check if form is empty, "" or null
 
 
-     //disallow form submission if the tweet area is empty or exceeds 140 char
-     // data is not empty "" or null
-     //implement form validation before sending the form data to the server
-     //give 2 seperate errors if empty or above 140 char
-        // do not clear form
-        // do not submit form
-
-
-
-
-//  $(document).ready(function() {
-
-//   $( ".tweetBox" ).hover(
-//     function() {
-//       $( this ).addClass('hover');
-//       //$( this ).find('foot').append($("<i class="fa fa-flag-o" aria-hidden="true"></i>"));
-
-//       //<i class="fa fa-flag-o" aria-hidden="true"></i>
-//       //<i class="fa fa-heart" aria-hidden="true"></i>
-
-//    } , function() {
-//       $( this ).removeClass('hover');
-//   }
-
-//  );
-
-// });
 
 
 
