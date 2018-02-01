@@ -185,8 +185,8 @@ $(document).ready(function() {
                 loadTweets();
               }
             })
-               //$('#textMe').innerHTML('')
-            // **************************** *need clear tweet form
+             // clear tweet form
+              $('#textMe').val('');
     }
   })
 
