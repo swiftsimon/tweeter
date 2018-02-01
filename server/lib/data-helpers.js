@@ -17,12 +17,10 @@ module.exports = function makeDataHelpers(db) {
     //   });
     // },
 
+      // save tweets to mongoDB
       saveTweet: function(newTweet, callback) {
         db.collection("tweets").insertOne(newTweet, function(err, tweet) {
           callback();
-          // assert.equal(null, err);
-          // assert.equal(1, res.insertedCount);
-
         })
 
     },
