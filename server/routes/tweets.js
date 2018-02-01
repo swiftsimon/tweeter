@@ -5,7 +5,9 @@ const userHelper    = require("../lib/util/user-helper")
 const express       = require('express');
 const tweetsRoutes  = express.Router();
 
-module.exports = function(DataHelpers) {
+// this is a 'factory function' which creates an object and returns it
+module.exports = function(DataHelpers) {   // exports a function which takes an argument, DataHelpers,
+                                //and returns some "tweet routes" which is an object
 
   tweetsRoutes.get("/", function(req, res) {
     DataHelpers.getTweets((err, tweets) => {

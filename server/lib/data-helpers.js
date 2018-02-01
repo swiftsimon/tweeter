@@ -1,5 +1,7 @@
 "use strict";
 
+// this is the only package that actually deals with a database
+
 // Simulates the kind of delay we see with network or filesystem operations
 const simulateDelay = require("./util/simulate-delay");
 
@@ -10,17 +12,23 @@ module.exports = function makeDataHelpers(db) {
     // Saves a tweet to `db`
     saveTweet: function(newTweet, callback) {
       simulateDelay(() => {
-        db.tweets.push(newTweet);
+        dbInstance.tweets.push(newTweet);
         callback(null, true);
       });
     },
 
     // Get all tweets in `db`, sorted by newest first
+    // getTweets: function(callback) {
+    //   simulateDelay(() => {
+    //     const sortNewestFirst = (a, b) => a.created_at - b.created_at;
+    //     callback(null, dbInstance.tweets.sort(sortNewestFirst));
+    //   });
+    // },
+
+    //use mongo to get tweets from the mongo db
     getTweets: function(callback) {
-      simulateDelay(() => {
-        const sortNewestFirst = (a, b) => a.created_at - b.created_at;
-        callback(null, db.tweets.sort(sortNewestFirst));
-      });
+      db.collection("tweets").find({}).sort({create_at: -1}).toArray(callback);
+
     }
 
   };
