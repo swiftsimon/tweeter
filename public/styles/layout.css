@@ -19,23 +19,24 @@ body {
   color: #244751;
   background-color: #eee;
   height: 100%;
+  overflow: auto;
 }
 
 /*
- * Additional CSS can be defined below or in other CSS files, as per instructions
+ * Additional CSS can be defined below or in other CSS files, as per instructions f2e9dc
  */
 
  html {
   font-family: 'Roboto Condensed', sans-serif;
-  height: 100%;
+  overflow: auto;
 }
 
 
 main {
   width: 450px;
-  margin: 140px 25% 0 25%;
+  margin: 140px auto auto auto;
   background-color: white;
-  height: 100%;
+
 
 }
 

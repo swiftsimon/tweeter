@@ -5,7 +5,7 @@
   top: 0;
   height: 80px;
   width: 100%;
-  background-color: #00a087;
+  background-color: #595959;
   color: #e8fdff;
   padding: 0 2em 0 2em;
 
@@ -22,6 +22,7 @@
   float: left;
   line-height: 2.5;
   font-size: 2em;
+  color: #91c499;
 }
 
 #nav-bar .compose {
@@ -31,16 +32,17 @@
   width: 100px;
   height: 50px;
   border-radius: 10%;
+  background-color: #f2e9dc;
 
 }
 
 #navBtn {
-  border: 2px solid grey;
+  border: 2px solid #f2e9dc;
   color: grey;
 }
 
 #navBtn:hover {
-  border: 2px solid black;
+  border: 2px solid #808f85;
   color: black;
 }
 

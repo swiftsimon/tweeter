@@ -20,7 +20,27 @@ $(document).ready(function() {
 
     let today = Date.now()
     let created = obj.created_at;
-    let minutes = Math.round(((today - created) / 60000) - 3);
+    let minutes = Math.round(((today - created) / 60000));
+    let hours = Math.round(((today - created) / 3600000));
+    let days = Math.round(((today - created) / 86400000));
+    let display;
+
+     let displayF = function () {
+      if (minutes < 3) {
+        display = "now";
+        return display;
+      } else if (minutes < 60) {
+        display = minutes + " minutes ago";
+        return display;
+      } else if (minutes >= 60 && minutes < 1440 ) {
+        display = hours + " hours ago";
+        return display;
+      } else if (minutes >= 1440) {
+          display = days + " days ago";
+          return display;
+    }
+  }
+    displayF();
 
     var tweetHTML = $(`
       <article class="tweetBox">
@@ -30,7 +50,7 @@ $(document).ready(function() {
            <span class="atField">${obj.user.handle}</span>
         </header>
         <span class="tweetText" >${escape(obj.content.text)}</span>
-        <footer class="foot"> ${minutes} minutes ago
+        <footer class="foot"> ${display}
           <i class="fa fa-retweet" aria-hidden="true"></i>
           <i class="fa fa-heart" aria-hidden="true"></i>
           <i class="fa fa-flag-o" aria-hidden="true"></i>
@@ -41,7 +61,7 @@ $(document).ready(function() {
       //this object comes from tweets JSON file
       // the JSON file seeds the tweets in MongoDB
 
-      return tweetHTML
+       return tweetHTML
   }
 
   function renderTweets(tweets) {
@@ -82,7 +102,7 @@ $(document).ready(function() {
         url: 'http://localhost:8080/tweets',
         method: 'GET',
         success: function (tweets) {
-          console.log("got new tweets", tweets);
+          // console.log("got new tweets", tweets);
             renderTweets(tweets);
       }
     })
@@ -135,7 +155,7 @@ $(document).ready(function() {
    // when toggle back, auto focus cursor on #textMe container
   $( "#navBtn" ).on('click', function() {
       //toggle       <section class="new-tweet">
-    $('.new-tweet').toggle();
+    $('.new-tweet').slideToggle();
     $('#textMe').focus();
 
   });

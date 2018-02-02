@@ -1,23 +1,29 @@
+#tweetContainer {
+  background-color: blue;
+}
+
+
 #line {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #f2e9dc;
   margin: 5px 5px 0 5px;
+  color: #f2e9dc;
 
 }
 
 
 textarea[name=text] {
-  width: 95%;
-  margin: 15px auto 0 auto;
+  width: 350px;
+  margin: 15px 5px 5px 15px;
   display: block;
   padding: 3px 3px 3px 3px;
 }
 
 .new-tweet {
-background-color: #eee;
+background-color: #808f85;
 margin: 20px 2em 0 2em;
 border-radius: 2%;
 width: 85%;
-float: left;
+
 }
 
 .counter {
@@ -32,14 +38,12 @@ float: left;
 
 .redText {
   color: red;
+  text-decoration: blink;
 }
 
-.tweetContainer {
-
-}
 
 .tweetBox {
-  border: 1px solid grey;
+  border: 1px solid #808f85;
   margin: 20px 2em 0 2em;
   border-radius: 2%;
   width: 85%;
@@ -47,14 +51,15 @@ float: left;
 }
 
 .tweetBox:hover {
-  border: 3px solid black;
+  border: 1px solid #595959;
 }
 
 
 
 .tweetHeader {
-  background-color: #d9d9d9;
+  background-color: #91c499;
   border-radius: 2%;
+  border-bottom: 1px solid #595959;
 
 }
 
@@ -73,8 +78,11 @@ float: left;
 }
 
 .foot {
-    border-top: 1px solid grey;
-    margin: 5px 5px 5px 5px;
+    border-top: 1px solid #595959;
+    background-color: #a5ceab;
+    padding: 2px 5px 2px 5px;
+    size: 10px;
+
 
 }
 
@@ -84,8 +92,11 @@ float: left;
   color:  grey;
 }
 
+
 .bigName {
   color: grey;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 
@@ -98,6 +109,11 @@ float: left;
 
 .tweetBox:hover .fa {
   display: inline;
+
+}
+
+.tweetBox:hover .atField {
+  color: #595959;
 
 }
 
