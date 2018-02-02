@@ -13,7 +13,10 @@ Node
 Express
 MongoDB
 
-
+# Screenshots
+!["Index page. Compose Tweet box has slide toggle connected to compose button"] (  )
+!["Tweet-box hover state, adds icons, adds box border, highlights handle"] (  )
+!["Character count and timestamp (manipulates minutes/hours/days)"] (  )
 
 ## Dependencies
 
