@@ -1,13 +1,12 @@
 
 $(document).ready(function() {
-  $(".new-tweet textarea").keyup(function() {    // target textarea tag from index.html
-    var charLeft = (140 - $(this).val().length);  // this refers to "textarea"
-      // console.log($(this).find(".counter"))
+  $(".new-tweet textarea").keyup(function() {
+    var charLeft = (140 - $(this).val().length);
     var targetCounter = $(this).closest(".new-tweet").find(".counter");
-            // traverse up (.closest) to find parent with .new-tweet class
-            //then traveerse down (.find) to find sibing with class .counter
+      // traverse up (.closest) to find parent with .new-tweet class
+      //then traveerse down (.find) to find sibing with class .counter
 
-    targetCounter.text(charLeft);  // use .text to update the value of the counter
+    targetCounter.text(charLeft);
 
     if (charLeft < 0) {
       targetCounter.addClass('redText');
@@ -17,9 +16,3 @@ $(document).ready(function() {
 
   })
 });
-
-
-   // var charLeft = (140 - (this).val().length)  // this refers to "textarea"
-   //    // console.log($(this).find(".counter"))
-   //  var targetCounter = (this).closest(".new-tweet").find(".counter")
-   //  var targetCounter = (this).closest(".new-tweet").find(".counter")

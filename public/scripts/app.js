@@ -1,14 +1,7 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
 
 $(document).ready(function() {
 
-//use the escape(str) function to clean the data going back out to the DOM
-//in this case escape is called on obj.content.text around line 32
+//clean the data going back out to the DOM
   function escape(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
@@ -25,6 +18,7 @@ $(document).ready(function() {
     let days = Math.round(((today - created) / 86400000));
     let display;
 
+// display time passed for messages
      let displayF = function () {
       if (minutes < 3) {
         display = "now";
@@ -73,30 +67,13 @@ $(document).ready(function() {
       }
   }
 
-      // another way to loop
-    // tweets.foreach(function (tweet) {
-    //  // calls createTweetElement for each tweet
-    //   var $tweet = createTweetElement(tweet);
-    //  // takes return value and appends it to the tweets container
-    //     $('#tweetContainer').append($tweet);
-
-    // })
-
-      // var $tweet = createTweetElement(tweetData);
-      // console.log($tweet);
-      // $('#tweetContainer').append($tweet);
-     //renderTweets();
-
-     //upon submitting form prevent browser default of loading a new page
-     // this is where we want to prevent the bahaviour on id="submitMe"
-
+//upon submitting form prevent browser default of loading a new page
   $( "#submitMe" ).on('click', function() {
       event.preventDefault()
 
      });
 
-// new function, responsible for fetching tweets from the http://localhost:8080/tweets page.
-//It will use jQuery to make a request to /tweets and receive the array of tweets as JSON.
+// fetch tweets from the http://localhost:8080/tweets page.
   function loadTweets() {
       $.ajax({
         url: 'http://localhost:8080/tweets',
@@ -106,28 +83,21 @@ $(document).ready(function() {
             renderTweets(tweets);
       }
     })
-  };  // end loadTweets
+  };
 
-  loadTweets();  //call loadTweets
+  loadTweets();
 
 // ON CLICK TWEET
   $("#submitMe").on('click', function(text) {
     event.preventDefault()
     const theTweet =  $( '#textMe' ).val();
-       // console.log("new tweet", renderTweets(theTweet);
-        //console.log("tweet", theTweet)
-        //console.log("length", theTweet.length)
     if (theTweet === ""  ) {
-        //console.log("empty")
       alert("OMG. UR tweet b empty");
-          // send error
-          // prevent default
+
       event.preventDefault();
       } else if (theTweet.length > 140) {
             // send error
           alert("Darn. Your tweet exceeds 140 character maximum");
-            //console.log("too long")
-            //prevent default
           event.preventDefault();
         } else {
           // post to /tweets using ajax
@@ -135,12 +105,10 @@ $(document).ready(function() {
               url: 'http://localhost:8080/tweets',
               method: 'POST',
               // submit the data of the tweet
-              // in tweets.js you can see it expects this data as an object with a key of .text line 21
               data: {
                  text: theTweet,
                   },
               success: function (body) {
-                //console.log("got BRAND new tweets");
                 loadTweets();
               }
             })
@@ -150,9 +118,7 @@ $(document).ready(function() {
   })
 
  //COMPOSE BUTTON
-   //   <button id="navBtn" class="compose" type="button">Compose</button>
-   // when navBtn is pressed, toggle up/down the .new-tweet box
-   // when toggle back, auto focus cursor on #textMe container
+
   $( "#navBtn" ).on('click', function() {
       //toggle       <section class="new-tweet">
     $('.new-tweet').slideToggle();
@@ -165,17 +131,16 @@ $(document).ready(function() {
         url: 'http://localhost:8080/tweets',
         method: 'GET',
         success: function (tweets) {
-          //console.log("got new tweets", tweets);
           renderTweets(tweets);
       }
     })
-  };  // end loadTweets
+  };
 
-  loadTweets();  //call loadTweets
+  loadTweets();
 
 
 
-});  // end of doc.ready
+});
 
 
 
